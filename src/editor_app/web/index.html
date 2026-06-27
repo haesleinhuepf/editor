@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>editor</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <div class="menu-bar">
+      <div class="menu-left">
+        <details class="menu"><summary>📁 File</summary><div class="menu-items" id="menu-file"></div></details>
+        <details class="menu"><summary>✏️ Edit</summary><div class="menu-items" id="menu-edit"></div></details>
+        <details class="menu"><summary>🤖 Prompt</summary><div class="menu-items" id="menu-prompt"></div></details>
+      </div>
+      <div class="prompt-status" id="prompt-status" aria-live="polite">
+        <span class="prompt-robot">🤖</span>
+        <span class="prompt-hourglass" id="prompt-hourglass" hidden>⌛</span>
+        <span class="prompt-label" id="prompt-label">Idle</span>
+        <button id="prompt-cancel" class="danger" hidden>Cancel</button>
+      </div>
+    </div>
+
+    <div class="toolbar" id="toolbar"></div>
+
+    <div class="tab-strip" id="tab-strip"></div>
+
+    <div class="layout">
+      <aside class="outline" id="outline"></aside>
+      <main class="sections" id="sections"></main>
+    </div>
+  </div>
+
+  <dialog id="prompt-dialog">
+    <form method="dialog" class="dialog-body">
+      <h3 id="prompt-title">Prompt</h3>
+      <textarea id="prompt-text" rows="6" placeholder="Describe what should change..."></textarea>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button value="ok" class="primary">Run ✨</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="settings-dialog">
+    <form method="dialog" class="dialog-body">
+      <h3>Prompt Settings</h3>
+      <label>Server <input id="cfg-server" type="text" /></label>
+      <label>API Key <input id="cfg-key" type="password" /></label>
+      <label>Model <input id="cfg-model" type="text" /></label>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button value="ok" class="primary">Save 💾</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="diff-dialog" class="diff-dialog">
+    <form method="dialog" class="dialog-body diff-body">
+      <h3>Prompt Diff</h3>
+      <div id="diff-view" class="diff-view"></div>
+      <label>Editable Result
+        <textarea id="diff-result" rows="10"></textarea>
+      </label>
+      <div class="dialog-actions">
+        <button value="cancel">Cancel</button>
+        <button value="undo">Undo ↩️</button>
+        <button value="edited">Apply Edited 📝</button>
+        <button value="accept" class="primary">Accept ✅</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

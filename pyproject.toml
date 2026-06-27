@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "editor"
+version = "0.1.0"
+description = "A section-based markdown editor with local LLM prompting"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+  { name = "Editor Project" }
+]
+dependencies = [
+  "fastapi>=0.116",
+  "uvicorn>=0.35",
+  "requests>=2.32",
+  "markdown>=3.6",
+  "pydantic>=2.11"
+]
+
+[project.scripts]
+editor = "editor_app.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+editor_app = ["web/*"]
